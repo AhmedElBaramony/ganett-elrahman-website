@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nursery Management System Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css\stud.css' %}" />
+    <script src="{% static 'js\stude.js' %}"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Gannet El Rahman</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showGrades()">Subjects</a></li>
+        <li><a href="#" onclick="showAttendance()">Attendance History</a></li>
+        <li><a href="#" onclick="showComplaint()">Submit a Complaint</a></li>
+        <li><a href="#" onclick="showSchedule()">View Schedule</a></li>
+        <li><a href="#" onclick="showStudent()">Student Info</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div id="grades">
+        <h2>Subjects</h2>
+        <table>
+          {% for subject in subjects_taken %}
+          <tr>
+            <td>{{ subject }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div id="attendance">
+        <h2>Attendance History</h2>
+        <table>
+          <tr>
+            <th>Date</th>
+          </tr>
+          {% for i in attendance %}
+          <tr>
+            <td>{{ i.date }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div id="complaint">
+        <h2>Submit a Complaint</h2>
+        <form method="POST">
+          {% csrf_token %}
+          <br />
+          <label for="description">Description:</label><br />
+          <textarea
+            id="description"
+            name="Complaint"
+            rows="4"
+            cols="50"
+          ></textarea
+          ><br />
+          <br />
+          <button type="submit" placeholder="Submit">Submit</button>
+        </form>
+      </div>
+      <div id="schedule">
+        <h2>View Schedule</h2>
+        <table>
+          <tr>
+            <th>Day</th>
+            <th>Subject</th>
+            <th>Time</th>
+          </tr>
+          <tr>
+            <td>Sunday</td>
+            <td>
+              Art <br /><br />
+              English
+            </td>
+            <td>
+              8:00 - 9:00 AM <br /><br />
+              9:30 - 10:30 AM
+            </td>
+          </tr>
+          <tr>
+            <td>Monday</td>
+            <td>
+              Religon <br /><br />
+              Arabic
+            </td>
+            <td>
+              8:00 - 9:00 AM <br /><br />
+              9:30 - 10:30 AM
+            </td>
+          </tr>
+          <tr>
+            <td>Tuesday</td>
+            <td>Arabic</td>
+            <td>10:00 - 11:00 AM</td>
+          </tr>
+          <tr>
+            <td>Wednesday</td>
+            <td>English</td>
+            <td>10:30 - 11:30 AM</td>
+          </tr>
+          <tr>
+            <td>Thusrsday</td>
+            <td>Activtes</td>
+            <td>11:00 - 12:00 AM</td>
+          </tr>
+        </table>
+      </div>
+      <div id='student'>
+        <h2>Student Info</h2>
+        <table>
+          <tr>
+            <th>First Name</th>
+            <td>{{student.first_name}}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>Mohamed</td>
+          </tr>
+          <tr>
+            <th>Branch</th>
+            <td>Rehab branch</td>
+          </tr>
+          <tr>
+            <th>Gardian Name</th>
+            <td>Mohamed Mostafa</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>mohamed@gmail.com</td>
+          </tr>
+          <tr>
+            <th>Phone</th>
+            <td>01280045475</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td>Tagamoo</td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
